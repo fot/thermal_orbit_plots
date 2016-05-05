@@ -217,7 +217,7 @@ def getstats(data, stat):
                       'maxes':maxvals, 'midvals':midvals, 'stds':stds}
         return returndict
 
-def alt_msid_fetch(msid, time1, time2, statname=None):
+def alt_msid_fetch(msid, time1, time2, stat=None):
 
     if 'OBAHCHK' in msid.upper():
 
@@ -921,11 +921,12 @@ class plotdec(object):
         for name in tracestats.keys():
             if name[:3] == 'stt':
                 if 'glimmonlimits' in tracestats[name].__dict__.keys():
-                    if tracestats[name].glimmonlimits.has_key('caution_low'):
-                        cautionlow = str(tracestats[name].glimmonlimits\
-                                         ['caution_low'])
-                        cautionhigh = str(tracestats[name].glimmonlimits\
-                                          ['caution_high'])
+                    if tracestats[name].glimmonlimits is not None:
+                        if tracestats[name].glimmonlimits.has_key('caution_low'):
+                            cautionlow = str(tracestats[name].glimmonlimits\
+                                             ['caution_low'])
+                            cautionhigh = str(tracestats[name].glimmonlimits\
+                                              ['caution_high'])
                     else:
                         cautionlow = 'None'
                         cautionhigh = 'None'                    
